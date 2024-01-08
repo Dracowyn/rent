@@ -30,7 +30,7 @@ const RouterList = () => {
 	return (
 		<Routes>
 			<Route path={'/'} element={<Home/>}/>
-			<Route path={'/'} element={<Outlet/>}>>
+			<Route path={'/'} element={<Outlet/>}>
 				{
 					RouterMap.map((item, index) => {
 						return (

@@ -1,7 +1,7 @@
-import Index from "./base";
-import Login from "./base/login";
-import Register from "./base/register";
-import Profile from "./base/Profile";
+import Index from "../../views/business/base/Index";
+import Login from "../../views/business/base/Login";
+import Register from "../../views/business/base/Register";
+import Profile from "../../views/business/base/Profile";
 
 const Base = [
 	{

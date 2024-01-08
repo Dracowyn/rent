@@ -1,28 +1,21 @@
 import React from "react";
+import {useCookies} from "react-cookie";
+import {Navigate} from "react-router-dom";
 
-const AuthRouter = (props) => {
-	if (props.auth) {
-		let business = React.Cookies.load('business') ? React.Cookies.load('business') : {};
+const AuthRouter = ({component: Component, auth}) => {
+	const [cookies] = useCookies(['business']);
+	const business = cookies.business;
 
+	if (auth) {
 		if (!business || JSON.stringify(business) === '{}') {
 			return (
-				<>
-					<React.Router.Navigate to="/business/base/login"/>
-				</>
+				<Navigate to="/business/base/login"/>
 			)
 		} else {
-			return (
-				<>
-					<props.component/>
-				</>
-			)
+			return <Component />
 		}
 	} else {
-		return (
-			<>
-				<props.component/>
-			</>
-		)
+		return <Component/>
 	}
 }
 
