@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// 引入cookie
+import Cookies from 'react-cookies';
+// 引入路由
+import * as Router from 'react-router-dom';
+
+// 全局挂载插件
+React.Cookies = Cookies;
+React.Router = Router;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
