@@ -6,16 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import Cookies from 'react-cookies';
 // 引入路由
 import * as Router from 'react-router-dom';
+// 引入React-vant
+import * as Vant from 'react-vant';
+// 引入React-vant-icons
+import * as Icons from '@react-vant/icons';
 
 // 全局挂载插件
 React.Cookies = Cookies;
 React.Router = Router;
+React.Vant = Vant;
+React.Icons = Icons;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+	<React.StrictMode>
+		<App/>
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
