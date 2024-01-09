@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {Form, Notify} from "react-vant";
 import {NavLink, useNavigate} from "react-router-dom";
 import base from "../../../api/business/base";
-import {setRawCookie} from "react-cookies";
 import {useCookies} from "react-cookie";
 
 const Login = () => {
