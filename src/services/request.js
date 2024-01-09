@@ -88,7 +88,7 @@ let GET = (data = {}) => {
 				cancel = c;
 			})
 		}).then(res => {
-			resolve(res);
+			resolve(res.data);
 		}).catch(err => {
 			reject(err);
 		})
@@ -105,7 +105,7 @@ let POST = (data = {}) => {
 				cancel = c;
 			})
 		}).then(res => {
-			resolve(res);
+			resolve(res.data);
 		}).catch(err => {
 			reject(err);
 		})
@@ -133,7 +133,7 @@ let UPLOAD = (data = {}) => {
 				cancel = c;
 			})
 		}).then(res => {
-			resolve(res);
+			resolve(res.data);
 		}).catch(err => {
 			reject(err);
 		})
