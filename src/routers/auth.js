@@ -3,8 +3,8 @@ import {useCookies} from "react-cookie";
 import {Navigate} from "react-router-dom";
 
 const AuthRouter = ({component: Component, auth}) => {
-	const [cookies] = useCookies(['business']);
-	const business = cookies.business;
+	let [cookies] = useCookies(['business']);
+	let business = cookies.business;
 
 	if (auth) {
 		if (!business || JSON.stringify(business) === '{}') {
