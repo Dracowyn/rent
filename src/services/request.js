@@ -140,7 +140,7 @@ let UPLOAD = (data = {}) => {
 	})
 }
 
-export default {
+export {
 	GET,
 	POST,
 	UPLOAD
