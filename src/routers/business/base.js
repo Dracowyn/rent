@@ -2,6 +2,7 @@ import Index from "../../views/business/base/Index";
 import Login from "../../views/business/base/Login";
 import Register from "../../views/business/base/Register";
 import Profile from "../../views/business/base/Profile";
+import Email from "../../views/business/base/Email";
 
 const Base = [
 	{
@@ -28,6 +29,12 @@ const Base = [
 		component: Profile,
 		auth: true,
 	},
+	{
+		path: 'base/email',
+		name: 'BaseEmail',
+		component: Email,
+		auth: true,
+	}
 ]
 
 export default Base;
