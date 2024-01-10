@@ -6,10 +6,10 @@ import {Dialog} from "react-vant";
 
 const Index = () => {
 	// 获取cookie
-	const [cookies, setCookie, removeCookie] = useCookies(['business']);
+	const [cookies, , removeCookie] = useCookies(['business']);
 
 	// 设置状态数据
-	const [business, setBusiness] = React.useState(JSON.stringify(cookies.business) === '{}' ? null : cookies.business);
+	const [business] = React.useState(JSON.stringify(cookies.business) === '{}' ? null : cookies.business);
 
 	let navigate = useNavigate();
 
@@ -124,6 +124,28 @@ const Index = () => {
 
 							<div className="my_dind">
 								<div className="bt">
+									<NavLink to="/user/base/profile">
+										<h3><img src="/assets/images/my_x_01.png" alt="img"/>消费记录</h3>
+										<div className="right">
+											<img src="/assets/images/right_jiant.png" alt="img"/>
+										</div>
+									</NavLink>
+								</div>
+							</div>
+
+							<div className="my_dind">
+								<div className="bt">
+									<NavLink to="/user/base/profile">
+										<h3><img src="/assets/images/my_x_01.png" alt="img"/>意见反馈</h3>
+										<div className="right">
+											<img src="/assets/images/right_jiant.png" alt="img"/>
+										</div>
+									</NavLink>
+								</div>
+							</div>
+
+							<div className="my_dind">
+								<div className="bt">
 									<NavLink to="/about">
 										<h3><img src="/assets/images/my_x_02.png" alt=""/>关于我们</h3>
 										<div className="right">
@@ -134,7 +156,7 @@ const Index = () => {
 							</div>
 							<div className="my_dind">
 								<div className="bt">
-									<a onClick={logout} href={'/'} >
+									<a onClick={logout} href={'/'}>
 										<h3><img src="/assets/images/my_x_02.png" alt=""/>退出登录</h3>
 										<div className="right">
 											<img src="/assets/images/right_jiant.png" alt=""/>
