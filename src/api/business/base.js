@@ -25,6 +25,12 @@ const base = {
 			params: data
 		})
 	},
+	index: (data = {}) => {
+		return POST({
+			url: '/business/base/index',
+			params: data
+		})
+	},
 }
 
 export default base;

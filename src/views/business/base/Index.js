@@ -2,7 +2,8 @@ import React from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import Footer from "../../../components/common/Footer";
 import {useCookies} from "react-cookie";
-import {Dialog} from "react-vant";
+import {Dialog, Notify} from "react-vant";
+import base from "../../../api/business/base";
 
 const Index = () => {
 	// 获取cookie
@@ -13,6 +14,12 @@ const Index = () => {
 
 	let navigate = useNavigate();
 
+	const [count, setCount] = React.useState({
+		productCount: 0,
+		cateCount: 0,
+		orderCount: 0,
+	})
+
 	// 退出登录
 	const logout = (e) => {
 		// 组织默认事件
@@ -21,7 +28,7 @@ const Index = () => {
 			title: '提示',
 			message: '您确定要退出登录吗？',
 		}).then(() => {
-			removeCookie('business');
+			removeCookie('business', {path: '/'});
 			navigate('/business/base/login');
 		}).catch(() => {
 			// on cancel
@@ -49,6 +56,29 @@ const Index = () => {
 		}
 		return nickname;
 	}
+
+
+	// 获取数据总数
+	React.useEffect(() => {
+		const getCountData = async () => {
+			let data = {
+				busid: business.id,
+			}
+
+			let result = await base.index(data);
+
+			if (result.code === 1) {
+				setCount(result.data);
+			} else {
+				Notify.show({
+					type: 'warning',
+					message: result.msg,
+					duration: 1500,
+				})
+			}
+		}
+		getCountData().then(r => r);
+	}, [business]);
 
 	// 获取认证状态
 	const Email = () => {
@@ -89,15 +119,16 @@ const Index = () => {
 						<div className="yverjif">
 							<ul>
 								<li>
-									<h2>0</h2><p>关注</p>
+									<h2>{count.productCount}</h2>
+									<p>收藏商品</p>
 								</li>
 								<li>
-									<h2>12</h2>
-									<p>收藏</p>
+									<h2>{count.cateCount}</h2>
+									<p>收藏文章</p>
 								</li>
 								<li>
-									<h2>17</h2>
-									<p>足迹</p>
+									<h2>{count.orderCount}</h2>
+									<p>订单总数</p>
 								</li>
 							</ul>
 						</div>
