@@ -16,7 +16,7 @@ const Profile = () => {
 
 	const [genderShow, setGenderShow] = React.useState(false)
 
-	const [genderList, setGenderList] = React.useState([
+	const [genderList] = React.useState([
 		{text: '保密', value: 0},
 		{text: '男', value: 1},
 		{text: '女', value: 2},
@@ -99,7 +99,7 @@ const Profile = () => {
 	}
 
 	const getAvatar = () => {
-		let avatar = '';
+		let avatar;
 		if (business && business.avatar) {
 			avatar = business.avatar;
 		} else {
@@ -208,7 +208,7 @@ const Profile = () => {
 							<Picker
 								title="性别"
 								columns={genderList}
-								defaultValue={business.gender * 1}
+								defaultValue={'business.gender * 1'}
 								onConfirm={genderConfirm}
 								onCancel={() => {
 									setGenderShow(false)
