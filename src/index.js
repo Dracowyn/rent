@@ -7,13 +7,13 @@ import {CookiesProvider} from "react-cookie";
 
 const root = document.getElementById('root');
 createRoot(root).render(
-	<React.StrictMode>
+	// <React.StrictMode>
 		<CookiesProvider>
 			<Router>
 				<App/>
 			</Router>
 		</CookiesProvider>
-	</React.StrictMode>,
+	// </React.StrictMode>,/
 );
 
 reportWebVitals();
