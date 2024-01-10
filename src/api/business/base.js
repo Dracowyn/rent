@@ -14,7 +14,7 @@ const base = {
 		})
 	},
 	profile: (data = {}) => {
-		return POST({
+		return UPLOAD({
 			url: '/business/base/profile',
 			params: data
 		})

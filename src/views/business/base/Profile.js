@@ -43,7 +43,7 @@ const Profile = () => {
 				district: business.district,
 			}
 
-			let avatar = res.avatar[0]?.file ? res.avatar[0].file : {};
+			let avatar = res.avatar[0].file ? res.avatar[0].file : {};
 			if (avatar || JSON.stringify(avatar) !== '{}') {
 				data.avatar = avatar;
 			}
@@ -260,6 +260,9 @@ const Profile = () => {
 							<Uploader
 								maxCount={1}
 								value={avatar}
+								onChange={(files) => {
+									setAvatar(files)
+								}}
 							/>
 						</Form.Item>
 
