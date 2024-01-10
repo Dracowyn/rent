@@ -1,21 +1,22 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import {Area, Button, Form, Input, NavBar, Picker, Popup, Sticky, Uploader} from "react-vant";
+import {Area, Button, Form, Input, NavBar, Notify, Picker, Popup, Sticky, Uploader} from "react-vant";
 import {useCookies} from "react-cookie";
 import {areaList} from "@vant/area-data";
+import base from "../../../api/business/base";
 
 const Profile = () => {
 	let navigate = useNavigate();
 
 	const [form] = Form.useForm();
 
-	const [cookies] = useCookies(['business']);
+	const [cookies, setCookie] = useCookies(['business']);
 
 	const [business, setBusiness] = React.useState(JSON.stringify(cookies.business) === '{}' ? null : cookies.business)
 
-	const [genderShow, setgenderShow] = React.useState(false)
+	const [genderShow, setGenderShow] = React.useState(false)
 
-	const [genderList, setgenderList] = React.useState([
+	const [genderList, setGenderList] = React.useState([
 		{text: '保密', value: 0},
 		{text: '男', value: 1},
 		{text: '女', value: 2},
@@ -31,11 +32,45 @@ const Profile = () => {
 	const [avatar, setAvatar] = React.useState([])
 
 	const onSubmit = () => {
+		form.validateFields().then(async (res) => {
+			let data = {
+				busid: business.id,
+				nickname: business.nickname,
+				email: business.email,
+				gender: business.gender,
+				province: business.province,
+				city: business.city,
+				district: business.district,
+			}
 
+			let avatar = res.avatar[0]?.file ? res.avatar[0].file : {};
+			if (avatar || JSON.stringify(avatar) !== '{}') {
+				data.avatar = avatar;
+			}
+
+			let res2 = await base.profile(data);
+
+			if (res2.code === 1) {
+				setBusiness(res2.data);
+				// 更新cookie
+				setCookie('business', JSON.stringify(res2.data), {path: '/'});
+				Notify.show({
+					type: 'success',
+					message: res2.msg,
+					duration: 1500,
+				})
+			} else {
+				Notify.show({
+					type: 'danger',
+					message: res2.msg,
+					duration: 1500
+				})
+			}
+		})
 	}
 
 	const genderConfirm = (_, item) => {
-		setgenderShow(false)
+		setGenderShow(false)
 		if (item) {
 			business.gender = item.value;
 			business.gender_text = item.text;
@@ -56,6 +91,7 @@ const Profile = () => {
 
 		setCode(region)
 		business.region_text = region_text;
+		business.region = region;
 	}
 
 	const getAvatar = () => {
@@ -149,7 +185,7 @@ const Profile = () => {
 						<Form.Item
 							label="性别"
 							onClick={() => {
-								setgenderShow(true)
+								setGenderShow(true)
 							}}
 							isLink
 							labelWidth='55'
@@ -163,7 +199,7 @@ const Profile = () => {
 							position="bottom"
 							round visible={genderShow}
 							onClose={() => {
-								setgenderShow(false)
+								setGenderShow(false)
 							}}>
 							<Picker
 								title="性别"
@@ -171,7 +207,7 @@ const Profile = () => {
 								defaultValue={business.gender * 1}
 								onConfirm={genderConfirm}
 								onCancel={() => {
-									setgenderShow(false)
+									setGenderShow(false)
 								}}
 							/>
 						</Popup>
