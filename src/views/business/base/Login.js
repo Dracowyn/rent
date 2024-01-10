@@ -13,7 +13,7 @@ const Login = () => {
 	const [mobile, setMobile] = useState('')
 	const [password, setPassword] = useState('');
 
-	const [cookies, setCookie] = useCookies(['business']);
+	const [, setCookie] = useCookies(['business']);
 
 	const onSubmit = () => {
 		if (!mobile) {
