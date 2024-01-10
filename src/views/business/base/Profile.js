@@ -48,6 +48,10 @@ const Profile = () => {
 				data.avatar = avatar;
 			}
 
+			if (res.password) {
+				data.password = res.password.trim();
+			}
+
 			let res2 = await base.profile(data);
 
 			if (res2.code === 1) {
