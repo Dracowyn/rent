@@ -86,7 +86,7 @@ const Index = () => {
 			return (
 				<div className="my_dind">
 					<div className="bt">
-						<NavLink to="/user/base/email">
+						<NavLink to="/business/base/email">
 							<h3><img src="/assets/images/my_x_01.png" alt=""/>邮箱认证</h3>
 							<div className="right">
 								<img src="/assets/images/right_jiant.png" alt=""/>
@@ -141,7 +141,7 @@ const Index = () => {
 
 							<div className="my_dind">
 								<div className="bt">
-									<NavLink to="/user/base/profile">
+									<NavLink to="/business/base/profile">
 										<h3><img src="/assets/images/my_x_01.png" alt=""/>基本资料</h3>
 										<div className="right">
 											<img src="/assets/images/right_jiant.png" alt=""/>
@@ -155,7 +155,7 @@ const Index = () => {
 
 							<div className="my_dind">
 								<div className="bt">
-									<NavLink to="/user/base/profile">
+									<NavLink to="/business/base/profile">
 										<h3><img src="/assets/images/my_x_01.png" alt="img"/>消费记录</h3>
 										<div className="right">
 											<img src="/assets/images/right_jiant.png" alt="img"/>
@@ -166,7 +166,7 @@ const Index = () => {
 
 							<div className="my_dind">
 								<div className="bt">
-									<NavLink to="/user/base/profile">
+									<NavLink to="/business/base/profile">
 										<h3><img src="/assets/images/my_x_01.png" alt="img"/>意见反馈</h3>
 										<div className="right">
 											<img src="/assets/images/right_jiant.png" alt="img"/>
