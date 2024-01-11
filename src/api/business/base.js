@@ -31,6 +31,12 @@ const base = {
 			params: data
 		})
 	},
+	record: (data = {}) => {
+		return POST({
+			url: '/business/record/index',
+			params: data
+		})
+	},
 }
 
 export default base;

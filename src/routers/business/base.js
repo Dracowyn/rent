@@ -3,6 +3,7 @@ import Login from "../../views/business/base/Login";
 import Register from "../../views/business/base/Register";
 import Profile from "../../views/business/base/Profile";
 import Email from "../../views/business/base/Email";
+import Record from "../../views/business/base/Record";
 
 const Base = [
 	{
@@ -33,6 +34,12 @@ const Base = [
 		path: 'base/email',
 		name: 'BaseEmail',
 		component: Email,
+		auth: true,
+	},
+	{
+		path: 'base/record',
+		name: 'BaseRecord',
+		component: Record,
 		auth: true,
 	}
 ]
