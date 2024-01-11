@@ -60,6 +60,17 @@ const Index = () => {
 
 	// 获取数据总数
 	React.useEffect(() => {
+		if (!business) {
+			Notify.show({
+				type: 'warning',
+				message: '请先登录',
+				duration: 1500,
+				onClose: () => {
+					navigate('/business/base/login');
+				}
+			})
+			return;
+		}
 		const getCountData = async () => {
 			let data = {
 				busid: business.id,
@@ -78,7 +89,7 @@ const Index = () => {
 			}
 		}
 		getCountData().then(r => r);
-	}, [business]);
+	}, [business, navigate]);
 
 	// 获取认证状态
 	const Email = () => {
