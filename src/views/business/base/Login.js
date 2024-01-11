@@ -60,7 +60,7 @@ const Login = () => {
 					message: res.msg,
 					duration: 1500,
 					onClose: () => {
-						navigate('/business/base/index')
+						navigate(-1)
 					}
 				})
 			} else {
