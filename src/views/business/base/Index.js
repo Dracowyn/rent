@@ -28,8 +28,15 @@ const Index = () => {
 			title: '提示',
 			message: '您确定要退出登录吗？',
 		}).then(() => {
-			removeCookie('business', {path: '/'});
-			navigate('/business/base/login');
+			Notify.show({
+				type: 'success',
+				message: '退出登录成功',
+				duration: 1500,
+				onClose: () => {
+					removeCookie('business', {path: '/'});
+					navigate('/business/base/login');
+				}
+			})
 		}).catch(() => {
 			// on cancel
 		});
@@ -166,7 +173,7 @@ const Index = () => {
 
 							<div className="my_dind">
 								<div className="bt">
-									<NavLink to="/business/base/profile">
+									<NavLink to="/business/base/record">
 										<h3><img src="/assets/images/my_x_01.png" alt="img"/>消费记录</h3>
 										<div className="right">
 											<img src="/assets/images/right_jiant.png" alt="img"/>
