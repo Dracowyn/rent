@@ -20,7 +20,7 @@ axios.interceptors.request.use(config => {
 
 // 响应拦截器即异常处理
 axios.interceptors.response.use(response => {
-	return response;
+	return response.data;
 }, err => {
 	if (err && err.response) {
 		switch (err.response.status) {
@@ -88,7 +88,7 @@ let GET = (data = {}) => {
 				cancel = c;
 			})
 		}).then(res => {
-			resolve(res.data);
+			resolve(res);
 		}).catch(err => {
 			reject(err);
 		})
@@ -105,7 +105,7 @@ let POST = (data = {}) => {
 				cancel = c;
 			})
 		}).then(res => {
-			resolve(res.data);
+			resolve(res);
 		}).catch(err => {
 			reject(err);
 		})
@@ -133,7 +133,7 @@ let UPLOAD = (data = {}) => {
 				cancel = c;
 			})
 		}).then(res => {
-			resolve(res.data);
+			resolve(res);
 		}).catch(err => {
 			reject(err);
 		})
