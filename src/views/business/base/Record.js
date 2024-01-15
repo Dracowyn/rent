@@ -18,7 +18,7 @@ const Record = () => {
 		try {
 			let res = await base.record({
 				page: 1,
-				pageSize: pagination.pageSize,
+				limit: pagination.pageSize,
 				busid: business.id,
 			});
 			if (res && res.code === 1) {
@@ -53,7 +53,7 @@ const Record = () => {
 			let nextPage = pagination.page + 1;
 			let res = await base.record({
 				page: nextPage,
-				pageSize: pagination.pageSize,
+				limit: pagination.pageSize,
 				busid: business.id,
 			});
 			if (res && res.code === 1) {
