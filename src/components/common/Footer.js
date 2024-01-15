@@ -20,7 +20,7 @@ const Footer = () => {
 			<Tabbar value={active} onChange={onChangeBar} activeColor={'#ef6382'}>
 				<Tabbar.Item name={'/'} icon={<WapHomeO/>}>首页</Tabbar.Item>
 				<Tabbar.Item name={''} icon={<AppsO/>}>商品</Tabbar.Item>
-				<Tabbar.Item name={''} icon={<Description/>}>学术</Tabbar.Item>
+				<Tabbar.Item name={'/category/category/index'} icon={<Description/>}>学术</Tabbar.Item>
 				<Tabbar.Item name={'/business/base/index'} icon={<UserO/>}>我的</Tabbar.Item>
 			</Tabbar>
 		</div>
