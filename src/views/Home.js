@@ -1,19 +1,110 @@
 import React from "react";
 import Footer from "../components/common/Footer";
+import home from "../api/home/home";
+import {Image, NavBar, Notify, Sticky, Swiper} from "react-vant";
+import {NavLink} from "react-router-dom";
 
 const Home = () => {
+	const [newList, setNewList] = React.useState([])
+	const [recommendList, setRecommendList] = React.useState([])
+	const [cateList, setCateList] = React.useState([])
+
+
+	React.useEffect(() => {
+		const getHomeData = async () => {
+			let result = await home.index();
+			if (result.code === 1) {
+				setNewList(result.data.newList)
+				setRecommendList(result.data.recommendList)
+				setCateList(result.data.categoryList)
+			} else {
+				Notify.show({
+					type: 'warning',
+					message: result.msg,
+					duration: 1500,
+				})
+			}
+		}
+
+		getHomeData().then(r => r);
+	}, []);
+
+	const NewSwiper = () => {
+		if (newList.length > 0) {
+			return (
+				<>
+					<Swiper autoplay={5000}>
+						{newList.map(item => {
+							return (
+								<Swiper.Item key={item.id} style={{height: 200 +'px'}}>
+									<Image src={item.thumb_cdn}/>
+								</Swiper.Item>
+							)
+						})}
+					</Swiper>
+				</>
+			)
+		}
+	}
+
+	const RecommendSwiper = () => {
+		if (recommendList.length > 0) {
+			return (
+				<>
+					<Swiper autoplay={5000}>
+						{recommendList.map(item => {
+							return (
+								<Swiper.Item key={item.id}>
+									<NavLink to={'/product/product/info?id=' + item.id} className={'a_blok'}>
+										<Image src={item.thumb_cdn}/>
+										<span>查看详情</span>
+									</NavLink>
+								</Swiper.Item>
+							)
+						})}
+					</Swiper>
+				</>
+			)
+		}
+	}
+
+	const CategoryList = () => {
+		if (cateList.length > 0) {
+			return (
+				<ul>
+					{cateList.map(item => {
+						return (
+							<li key={item.id}>
+								<img src={item.image_cdn} alt={''}/>
+								<div className={'right'}>
+									<p>
+										{item.name}
+									</p>
+									<span>
+										{item.createtime_text}
+									</span>
+								</div>
+							</li>
+						)
+					})}
+				</ul>
+			)
+		}
+	}
+
+
 	return (
 		<>
+			<Sticky zIndex={10}>
+				<NavBar
+					title={'租赁商城'}
+					leftArrow={false}
+				/>
+			</Sticky>
+
 			{/* 轮播图 */}
 			<div className={'banner_shouy'}>
-				<div className={'swiper-wrapper'}>
-					<div className={'swiper-slide'}>
-						<img src='/assets/images/banner.jpg' alt=""/>
-					</div>
-					<div className={'swiper-slide'}>
-						<img src='/assets/images/banner1.jpg' alt=""/>
-					</div>
-				</div>
+				<NewSwiper/>
 			</div>
 
 			{/* 快捷导航 */}
@@ -51,68 +142,12 @@ const Home = () => {
 			<div className={'chan_p_center'}>
 				<div className={'chan_p_sy'} style={{marginBottom: '20px'}}>
 					<div className={'sjpiue_chanp_list'}>
-						<div className={'swiper-wrapper'}>
-							<div className={'swiper-slide'}>
-								<a href={'/'} className={'a_blok'}>
-									<img src='/assets/images/chanp_img.jpg' alt={''}/>
-									<span>查看详情</span>
-								</a>
-							</div>
-							<div className={'swiper-slide'}>
-								<a href={'/'} className={'a_blok'}>
-									<img src='/assets/images/chanp_img1.jpg' alt={''}/>
-									<span>查看详情</span>
-								</a>
-							</div>
-						</div>
+						<RecommendSwiper/>
 					</div>
 				</div>
 
 				<div className="list_color">
-					<ul>
-						<li>
-							<img src="/assets/images/banner.jpg" alt=""/>
-							<div className="right">
-								<p>
-									人的美丽会随着时间的流失,会渐渐流失在往日的光彩照人里,只有知识的美丽才是永...
-								</p>
-								<span>
-                                    博弈论在商业和生活不同场景中的应用指南教程，比《策略思维》有趣、有料、更有挑战性。
-                                </span>
-							</div>
-						</li>
-						<li>
-							<img src="/assets/images/banner1.jpg" alt=""/>
-							<div className="right">
-								<p>人的美丽会随着时间的流失 </p>
-								<span>
-                                    博弈论在商业和生活不同场景中的应用指南教程，比《策略思维》有趣、有料、更有挑战性。
-                                </span>
-							</div>
-						</li>
-						<li>
-							<img src="/assets/images/anli.jpg" alt=""/>
-							<div className="right">
-								<p>
-									人的美丽会随着时间的流失,会渐渐流失在往日的光彩照人里,只有知识的美丽才是永...
-								</p>
-								<span>
-                                    博弈论在商业和生活不同场景中的应用指南教程，比《策略思维》有趣、有料、更有挑战性。
-                                </span>
-							</div>
-						</li>
-						<li>
-							<img src="/assets/images/anli1.jpg" alt=""/>
-							<div className="right">
-								<p>
-									人的美丽会随着时间的流失,会渐渐流失在往日的光彩照人里,只有知识的美丽才是永...
-								</p>
-								<span>
-                                    博弈论在商业和生活不同场景中的应用指南教程，比《策略思维》有趣、有料、更有挑战性。
-                                </span>
-							</div>
-						</li>
-					</ul>
+					<CategoryList/>
 				</div>
 			</div>
 
