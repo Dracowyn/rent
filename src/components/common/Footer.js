@@ -1,7 +1,7 @@
 import React from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Tabbar} from "react-vant";
-import {WapHomeO} from "@react-vant/icons";
+import {AppsO, Description, UserO, WapHomeO} from "@react-vant/icons";
 
 const Footer = () => {
 	let location = useLocation();
@@ -19,9 +19,9 @@ const Footer = () => {
 		<div className="footer_menu">
 			<Tabbar value={active} onChange={onChangeBar} activeColor={'#ef6382'}>
 				<Tabbar.Item name={'/'} icon={<WapHomeO/>}>首页</Tabbar.Item>
-				<Tabbar.Item name={''} icon={<WapHomeO/>}>商品</Tabbar.Item>
-				<Tabbar.Item name={''} icon={<WapHomeO/>}>学术</Tabbar.Item>
-				<Tabbar.Item name={'/business/base/index'} icon={<WapHomeO/>}>我的</Tabbar.Item>
+				<Tabbar.Item name={''} icon={<AppsO/>}>商品</Tabbar.Item>
+				<Tabbar.Item name={''} icon={<Description/>}>学术</Tabbar.Item>
+				<Tabbar.Item name={'/business/base/index'} icon={<UserO/>}>我的</Tabbar.Item>
 			</Tabbar>
 		</div>
 	)
